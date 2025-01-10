@@ -2,7 +2,7 @@
 
 Console Utility to benchmark DirectInput8 EnumDevices. Might be useful to you If you're struggling with game freezes/lags :)
 
-I know this isn't the proper way to publish code, but just going to paste it in the readme quickly. 
+I know this isn't the proper way to publish code, but just going to paste it in the readme quickly. Can be compiled as a console app in Visual Studio.
 
 
 ```#include <windows.h>
