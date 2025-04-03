@@ -19,8 +19,23 @@ LPDIRECTINPUT8 g_pDI = nullptr;
 
 BOOL CALLBACK EnumDevicesCallback(const DIDEVICEINSTANCE* pdidInstance, VOID* pContext)
 {
+    // Declare variables to store timing information
+    LARGE_INTEGER start, end, freq;
+
+    QueryPerformanceFrequency(&freq);
+    QueryPerformanceCounter(&start);
+
     // Print out device name (tszProductName is a wide string)
-    std::wcout << L"  Device: " << pdidInstance->tszProductName << std::endl;
+    std::wcout << L"  Device: " << pdidInstance->tszProductName;
+
+    QueryPerformanceCounter(&end);
+
+    // Calculate the elapsed time in milliseconds
+    double elapsedSeconds = double(end.QuadPart - start.QuadPart) / double(freq.QuadPart);
+    double elapsedMs = elapsedSeconds * 1000.0;
+
+    std::wcout << L" - Time: " << elapsedMs << L" ms" << std::endl;
+
     return DIENUM_CONTINUE;
 }
 
